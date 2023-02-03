@@ -5,7 +5,7 @@ int main() {
 		for (int j =1; j <= i; j++) {
 			cout << j<<"*"<<i<<"="<<i*j<<"      ";
 		}
-		cout << endl;//换行（非常的重要）
+		cout << endl;/*寰堥噸瑕佺殑鎹㈣鎸夐挳*/
 	}
 		
 	system("pause");
