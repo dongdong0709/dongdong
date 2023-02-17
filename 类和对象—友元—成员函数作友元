@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Building;
+
+class goodGay {
+public:
+	goodGay();
+	void visit();//让visit可以访问Buliding中的私有成员
+	void visit1();//让visit不可以访问Buliding中的私有成员
+private:
+	Building* building;
+};
+class Building {
+	//告诉编译器 goodGay类下的visit成员函数作为本类的好朋友，可以访问私有成员
+	friend void goodGay::visit();
+	//friend void goodGay::visit1();
+public:
+	Building();
+public:
+	string keting;
+private:
+	string bedroom;
+};
+//类外实现成员函数
+Building::Building() {
+	keting = "客厅";
+	bedroom = "卧室";
+}
+goodGay::goodGay() {
+	building = new Building;
+}
+void goodGay::visit() {
+	cout << "visit函数正在访问" << building->keting << endl;
+	cout << "visit函数正在访问" << building->bedroom << endl;
+}
+void goodGay::visit1() {
+	cout << "visit1函数正在访问" << building->keting << endl;
+	//cout << "visit1函数正在访问" << building->bedroom << endl;
+}
+void test01() {
+	goodGay gg;
+	gg.visit();
+	gg.visit1();
+}
+int main() {
+	test01();
+}
