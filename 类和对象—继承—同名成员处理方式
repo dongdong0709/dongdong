@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+//同名成员的处理
+class Base {
+public:
+	Base() {
+		a = 10;
+	}
+	void func() {
+		cout << "Base-func的调用" << endl;
+	}
+	void func(int a) {
+		cout << "Base-func(int a)的调用" << endl;
+	}
+	int a;
+};
+class Son :public Base {
+public:
+	Son() {
+		a = 20;
+	}
+	void func() {
+		cout << "Son-func的调用" << endl;
+	}
+	int a;
+};
+//同名的成员属性
+void test01() {
+	Son s;
+	cout << "Son类下的a=" << s.a << endl;	//同名，直接访问，访问到的就是自身的子类的值——20
+	
+	//如果通过子类对象，访问到父类中的同名成员，需要加作用域
+	cout << "Base类下的a=" << s.Base::a << endl;//s.后面加父类的作用域即可
+}
+//同名的成员函数
+void test02() {
+	Son s;
+	s.func();//直接调用 调用的是子类中的同名成员
+	//
+	s.Base::func();
+	//如果子类中出现和父类同名的成员函数，子类的同名成员会隐藏掉父类中的所有同名成员函数
+	//如果想访问到父类中的被隐藏掉的同名成员函数，要加作用域
+	s.Base::func(10);
+}
+int main() {
+	test01();
+	test02();
+}
