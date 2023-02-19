@@ -1,0 +1,58 @@
+//制作饮品的大致流程：煮水+冲泡+倒入杯中+加入辅料,利用多态技术实现本案例，提供抽象制作饮品基类，提供子类制作咖啡和茶叶
+#include<iostream>
+using namespace std;
+class Drink {
+public:
+	virtual void func1() = 0;//煮水
+	virtual void func2() = 0;//冲泡
+	virtual void func3() = 0;//倒入杯中
+	virtual void func4() = 0;//加入辅料
+	void MakeDrink() {	//制作饮品
+		func1();
+		func2();
+		func3();
+		func4();
+	}
+};
+class Coffee :public Drink {
+public:
+	virtual void func1() {
+		cout << "煮农夫山泉" << endl;
+	}
+	virtual void func2() {
+		cout << "冲泡咖啡" << endl;
+	}
+	virtual void func3() {
+		cout << "倒入咖啡杯中" << endl;
+	}
+	virtual void func4() {
+		cout << "加入咖啡豆" << endl;
+	}
+};
+class Tea :public Drink {
+public:
+	virtual void func1() {
+		cout << "煮水" << endl;
+	}
+	virtual void func2() {
+		cout << "冲泡茶" << endl;
+	}
+	virtual void func3() {
+		cout << "倒入杯中" << endl;
+	}
+	virtual void func4() {
+		cout << "加入辅料" << endl;
+	}
+};
+//多态的好处，同一个接口,后期再制作其他饮品，直接在test01里面实现了
+void dowork(Drink* drink ) {//===Drink* drinkc = new Coffee;
+	drink->MakeDrink();
+	delete drink;
+}
+void test01() {
+	dowork(new Coffee);
+	dowork(new Tea);
+}
+int main() {
+	test01();
+}
