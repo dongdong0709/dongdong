@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+class Base1 {
+public:
+	Base1() {
+		a = 10;
+	}
+	int a;
+};
+class Base2 {
+public:
+	Base2() {
+		a = 20;
+	}
+	int a;
+};
+class Son :public Base1, public Base2 {	//多继承语法
+public:
+	Son() {
+		a = 30;
+	}
+	int a;
+};
+void test01() {
+	Son s;
+	cout << "sizeof(son)=" << sizeof(s) << endl;
+	cout << "Son下的a的值为：" << s.a << endl;
+	cout << "Base1下的a的值为：" << s.Base1::a << endl;
+	cout << "Base2下的a的值为：" << s.Base2::a << endl;
+}
+int main() {
+	test01();
+}
