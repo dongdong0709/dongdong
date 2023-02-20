@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+#include<fstream>
+//文本文件 写文件
+void test01() {
+    //1.包含头文件
+
+    //2.创建流对象——o:写 f:文件 stream：流
+    ofstream ofs;
+    //3.打开文件 ofs.open("文件路径", 打开方式);——文件路径可以写绝对路径也可以写相对路径
+    ofs.open("test.txt", ios::out);
+    //4.写数据
+    ofs << "姓名：张三";
+    ofs << "年龄：18";
+    ofs << "性别：你猜";
+
+    //5.关闭文件
+    ofs.close();
+}
+int main() {
+    test01();
+}
